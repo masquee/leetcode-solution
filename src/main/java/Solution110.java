@@ -3,16 +3,19 @@ import core.TreeNode;
 
 public class Solution110 {
 
+    private boolean isBalanced = true; // initial value is true
+
     public boolean isBalanced(TreeNode root) {
-        if (root == null) return true;
-        if (Math.abs(height(root.left) - height(root.right)) > 1) return false;
-        if (!isBalanced(root.left) || !isBalanced(root.right)) return false;
-        return true;
+        height(root);
+        return isBalanced;
     }
 
     private int height(TreeNode root) {
         if (root == null) return 0;
-        return 1 + Math.max(height(root.left), height(root.right));
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+        if (Math.abs(leftHeight - rightHeight) > 1) isBalanced = false;
+        return 1 + Math.max(leftHeight, rightHeight);
     }
 
 }
