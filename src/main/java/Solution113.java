@@ -18,21 +18,27 @@ public class Solution113 {
     private List<List<Integer>> paths = new ArrayList<>();
     private List<Integer> path = new ArrayList<>();
 
-    private void dfs(TreeNode root, int sum) {
-        if (root == null) return;
+    private void dfs(TreeNode node, int sum) {
 
-        path.add(root.val);
+        // recursion base case
+        if (node == null) return;
 
-        // 抵达叶节点
-        if (isLeaf(root)) {
-            if (root.val == sum) {
+        // visit node
+        path.add(node.val);
+        if (isLeaf(node)) {     // 抵达叶节点
+            if (node.val == sum) {
                 hasPathSum = true;
                 paths.add(new ArrayList<>(path));
             }
         }
 
-        dfs(root.left, sum - root.val);
-        dfs(root.right, sum - root.val);
+        // visit left sub-tree
+        dfs(node.left, sum - node.val);
+
+        // visit left sub-tree
+        dfs(node.right, sum - node.val);
+
+        // after visit sub-trees, complete visit node
         path.remove(path.size() - 1);
     }
 
