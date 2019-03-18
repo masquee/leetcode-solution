@@ -13,8 +13,6 @@ public class Solution113 {
         return paths;
     }
 
-    private boolean hasPathSum = false;
-
     private List<List<Integer>> paths = new ArrayList<>();
     private List<Integer> path = new ArrayList<>();
 
@@ -25,9 +23,8 @@ public class Solution113 {
 
         // visit node
         path.add(node.val);
-        if (isLeaf(node)) {     // 抵达叶节点
+        if (isLeaf(node)) {     // leaf node
             if (node.val == sum) {
-                hasPathSum = true;
                 paths.add(new ArrayList<>(path));
             }
         }
@@ -35,7 +32,7 @@ public class Solution113 {
         // visit left sub-tree
         dfs(node.left, sum - node.val);
 
-        // visit left sub-tree
+        // visit right sub-tree
         dfs(node.right, sum - node.val);
 
         // after visit sub-trees, complete visit node
