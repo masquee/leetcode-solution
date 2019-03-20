@@ -1,9 +1,5 @@
 import core.ListNode;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Stack;
-
 public class Solution002 {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
